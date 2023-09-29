@@ -1,0 +1,52 @@
+// Convert a decimal numbers into binary
+
+#include<iostream>
+using namespace std;
+
+int* regrow(int*, int, int);
+void copyArray(int*, int*, int);
+void display(int*, int);
+
+int main()
+{
+	int num = 10, size = 0;
+	int* arr = new int;
+	
+	for (int i = 0; num >= 0; i++)
+	{
+		int j = 0;
+		j = num % 2;
+		num = num / 2;
+		regrow(arr, size, j);
+		size++;
+	}
+	regrow(arr, size, 1);
+	size++;
+
+	display(arr, size);
+
+	delete[]arr;
+	arr = NULL;
+
+	return 0;
+}
+int* regrow(int*arr, int size, int value)
+{
+	int* newArr = new int[size + 1];
+	copyArray(arr, newArr, size);
+	newArr[size] = value;
+
+	delete[]arr;
+	arr = NULL;
+	return newArr;
+}
+void copyArray(int* oldArr, int* newArr, int s)
+{
+	for (int i = 0; i < s; i++)
+		newArr[i] = oldArr[i];
+}
+void display(int*arr, int size)
+{
+	for (int i = 0; i < size; i++)
+		cout << arr[i] << " ";
+}
